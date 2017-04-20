@@ -245,4 +245,20 @@ if ! zstyle -t ':prezto:module:git:alias' skip 'yes'; then
   alias gwC='git clean -f'
   alias gwx='git rm -r'
   alias gwX='git rm -rf'
+
+  #mine
+  alias gpr='gpc && hub pull-request'
+  alias gpr-copy='gpr | pbcopy'
+  
+  alias git-clean-branches='git branch --merged master | grep -v master | xargs git branch -d'
+  
+  function gnew {
+    git add -A
+    git stash
+    git checkout master
+    gfr
+    git branch -D $1
+    git checkout -b $1
+    git stash apply
+  }
 fi
